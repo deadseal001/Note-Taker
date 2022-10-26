@@ -15,6 +15,7 @@ function addNote(db,path,note) {
         }
     }
     highestID++;
+    note.id=highestID;
     db.push(note);
     fs.writeFile(path,JSON.stringify(db,null,2),(err)=>{
         if (err){
@@ -47,7 +48,8 @@ app.post('/api/notes',(req,res)=>{
 
 app.delete("/api/notes/:id", (req,res)=>{
     const jsonPath = path.join(__dirname, "/db/db.json");
-    let delID=req.params.id;
+    console.log(req.params.id);
+    let delID=daba.findIndex(e=>e.id==req.params.id);
     daba.splice(delID,1);
     fs.writeFile(jsonPath,JSON.stringify(daba),(err)=>{
         if(err){

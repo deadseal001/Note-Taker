@@ -25,15 +25,15 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
+const getNotes = () => {
   fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
-const saveNote = (note) =>
+};
+const saveNote = (note) =>{
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -41,14 +41,16 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+};
 
-const deleteNote = (id) =>
+const deleteNote = (id) =>{
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
+};
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -70,12 +72,14 @@ const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
+    id:''
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
 };
+
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
@@ -90,6 +94,7 @@ const handleNoteDelete = (e) => {
   }
 
   deleteNote(noteId).then(() => {
+    console.log('deleted')///??what is wrong here
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -119,6 +124,7 @@ const handleRenderSaveBtn = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
+  console.log(jsonNotes.length);
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }

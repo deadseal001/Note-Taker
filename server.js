@@ -6,10 +6,12 @@ const PORT=process.env.PORT || 3001;
 const daba=require('./db/db.json');
 
 function addNote(db,path,note) {
-    let highestID=db[0].id;
-    for (let i=1; i<daba.length; i++){
-        if(db[i].id>highestID){
-            highestID=db[i].id;
+    let highestID=0
+    if(db.length >0){
+        for (let i=0; i<daba.length; i++){
+            if(db[i].id>highestID){
+                highestID=db[i].id;
+            }
         }
     }
     highestID++;
@@ -47,7 +49,7 @@ app.delete("/api/notes/:id", (req,res)=>{
     const jsonPath = path.join(__dirname, "/db/db.json");
     let delID=req.params.id;
     daba.splice(delID,1);
-    fs.writeFile(jsonPath,JOSN.stringify(daba),(err)=>{
+    fs.writeFile(jsonPath,JSON.stringify(daba),(err)=>{
         if(err){
             console.log(err);
             return;

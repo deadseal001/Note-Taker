@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This Note Taker is an online app that can help users to create and view notes. 
+This Note Taker is an online app that can help users to create and view notes. The note data are saved in the server.
 
 ## Build_With
 * JavaScript

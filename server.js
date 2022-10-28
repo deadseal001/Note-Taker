@@ -22,7 +22,7 @@ function addNote(db,path,note) {
             console.log(err);
             return;
         }
-        return note;
+        return;
     });
 }
 
@@ -43,22 +43,21 @@ app.post('/api/notes',(req,res)=>{
     const jsonPath=path.join(__dirname,"/db/db.json");
     const newNote=req.body;
     addNote(daba,jsonPath,newNote);
-    res.json(newNote);
+    res.json({message: 'note saved'});
 });
 
 app.delete("/api/notes/:id", (req,res)=>{
     const jsonPath = path.join(__dirname, "/db/db.json");
-    console.log(req.params.id);
     let delID=daba.findIndex(e=>e.id==req.params.id);
     daba.splice(delID,1);
-    fs.writeFile(jsonPath,JSON.stringify(daba),(err)=>{
+    fs.writeFile(jsonPath,JSON.stringify(daba,null,2),(err)=>{
         if(err){
             console.log(err);
             return;
         } else {
             console.log("Selected note deleted.");
+            res.json({message:'note deleted'});
         }
-
     });
 });
 

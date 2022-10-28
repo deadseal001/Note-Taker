@@ -1,1 +1,17 @@
-[{"title":"note4","text":"note4","id":3},{"title":"note6","text":"note6","id":5},{"title":"note5","text":"note5","id":8},{"title":"note8","text":"note8","id":10}]
+[
+  {
+    "title": "call utility",
+    "text": "pay electricity bill",
+    "id": 1
+  },
+  {
+    "title": "make dinner",
+    "text": "prepare dinner before 6pm",
+    "id": 2
+  },
+  {
+    "title": "clean up",
+    "text": "clean upthe house",
+    "id": 3
+  }
+]
